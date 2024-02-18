@@ -1,0 +1,22 @@
+# Application Info
+info:
+  application:
+    name: api-gateway
+    description: API Gateway
+    author: Shubham Shinde
+    version: '@project.version@'
+
+# Server Config
+server:
+  port: 8080
+
+# Spring Security Config
+logging:
+  level.*: trace
+
+spring:
+  cloud:
+    gateway:
+      routes[0].id: authorization-server
+      routes[0].predicates: "path=/auth"
+      routes[0].uri: "http://localhost:9000/login"
