@@ -17,6 +17,8 @@ logging:
 spring:
   cloud:
     gateway:
-      routes[0].id: authorization-server
-      routes[0].predicates: "path=/auth"
-      routes[0].uri: "http://localhost:9000/login"
+      routes:
+        - id: authorization_server
+          uri: http://localhost:9000/login
+          predicates:
+            - Path=/auth
