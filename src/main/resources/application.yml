@@ -14,11 +14,30 @@ server:
 logging:
   level.*: trace
 
+# API GateWay Config
 spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9000
   cloud:
     gateway:
       routes:
         - id: authorization_server
-          uri: http://localhost:9000/login
+          uri: http://localhost:9000
           predicates:
-            - Path=/auth
+            - Path=/users/**
+          filters:
+            - PrefixPath=/api/V1
+
+# Actuator Endpoints
+management:
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: health, info, gateway
+  info:
+    env:
+      enabled: true
