@@ -18,8 +18,10 @@ An API Gateway is an essential component in microservices architecture, acting a
 
 ### Prerequisites
 
-- Java Development Kit (JDK) 8 or higher
-- Apache Maven or Gradle (for building the project)
+Before you begin, ensure you have the following prerequisites installed:
+
+- **Java Development Kit (JDK) 17**: Make sure you have Java 17 installed on your system. You can download it from the [official website](https://www.oracle.com/java/technologies/javase-jdk17-downloads.html) or use a package manager for your operating system.
+- **Apache Maven**: This project uses Maven as the build system. You can download Maven from the [official website](https://maven.apache.org/download.cgi) or install it using a package manager.
 
 ### Installation
 
