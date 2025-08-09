@@ -89,7 +89,6 @@ spring:
           filters:
             - PrefixPath=/api/V1
 
-<<<<<<< HEAD
 server:
   port: 8080
 ```
@@ -104,6 +103,3 @@ In this example:
 ## 📜 License
 
 This project is licensed under the **MIT License** – see the [LICENSE](LICENSE) file for details.
-=======
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
->>>>>>> 6dbdadad55ad585b7bd8310bea424cb0dc85807b
