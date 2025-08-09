@@ -1,62 +1,105 @@
 # API Gateway with Spring Cloud Gateway
 
-This repository contains a project for building an API Gateway using Spring Cloud Gateway.
+[![Java](https://img.shields.io/badge/Java-17%2B-blue)](https://openjdk.org/)
+[![Maven](https://img.shields.io/badge/Maven-3.8%2B-C71A36)](https://maven.apache.org/)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen)](https://spring.io/projects/spring-boot)
+[![Spring Cloud](https://img.shields.io/badge/Spring%20Cloud-2023.x-brightgreen)](https://spring.io/projects/spring-cloud)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## Overview
+A lightweight, high-performance **API Gateway** built with **Spring Cloud Gateway** to simplify and secure communication in microservices architectures.  
+It acts as a single entry point for all client requests, handling routing, load balancing, security, and monitoring—so your services can stay focused on business logic.
 
-An API Gateway is an essential component in microservices architecture, acting as a single entry point for clients to access various microservices. Spring Cloud Gateway provides a powerful and flexible way to build API gateways.
 
-## Features
 
-- **Routing**: Define routes for incoming requests and route them to appropriate downstream services.
-- **Filters**: Implement filters to manipulate requests and responses, enabling functionalities such as authentication, rate limiting, logging, and more.
-- **Load Balancing**: Integrate with service discovery mechanisms for load balancing across instances of microservices.
-- **Resilience**: Utilize built-in resilience features such as circuit breakers to handle failures gracefully.
-- **Monitoring**: Integrate with monitoring tools to gather metrics and monitor the health of the gateway and downstream services.
+## 📖 Overview
 
-## Getting Started
+In a distributed microservices setup, clients often need to call multiple services to complete a task. An API Gateway eliminates this complexity by providing a unified interface.  
+This project uses **Spring Cloud Gateway** to deliver a reactive, scalable, and easily configurable gateway solution for your applications.
+
+
+
+## ✨ Features
+
+- **Routing** – Define routes for incoming requests and direct them to the correct downstream services.
+- **Filters** – Apply pre- and post-filters to manipulate requests and responses for tasks like authentication, rate limiting, and logging.
+- **Load Balancing** – Integrate with service discovery to balance traffic across microservice instances.
+- **Resilience** – Use circuit breakers and other fault-tolerance patterns to handle failures gracefully.
+- **Monitoring** – Integrate with monitoring tools to track metrics and ensure system health.
+
+
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
-Before you begin, ensure you have the following prerequisites installed:
+Ensure you have the following installed before proceeding:
 
-- **Java**: Version 17 or later. You can download it from [OpenJDK](https://openjdk.java.net/).
-- **Apache Maven**: The project uses Maven as the build system. Install Maven by following the instructions [here](https://maven.apache.org/install.html).
+- **Java 17+** → [Download OpenJDK](https://openjdk.org/)
+- **Apache Maven** → [Installation Guide](https://maven.apache.org/install.html)
 
 ### Installation
 
-1. Clone this repository:
+1. **Clone the repository**
+   ```
+   git clone https://github.com/shubham225/api-gateway.git
+   ```
 
-    ```bash
-    git clone https://github.com/shubham225/api-gateway.git
-    ```
+2. **Navigate to the project directory**
+   ```
+   cd api-gateway
+   ```
 
-2. Navigate to the project directory:
+3. **Build the project**
+   ```
+   mvn clean install
+   ```
 
-    ```bash
-    cd api-gateway
-    ```
+### Running the Application
 
-3. Build the project:
+1. Start the Spring Cloud Gateway application:
+   ```
+   java -jar target/api-gateway.jar
+   ```
 
-    ```bash
-    mvn clean install
-    ```
+2. Access the gateway via your configured routes.
 
-### Usage
 
-1. Run the Spring Cloud Gateway application:
 
-    ```bash
-    java -jar target/api-gateway.jar
-    ```
+## ⚙️ Configuration
 
-2. Access the gateway endpoints using the configured routes.
+The gateway configuration is defined in the `application.yml` file.  
+You can customize:
 
-## Configuration
+- Routes
+- Filters
+- Load balancing settings
+- Other application properties
 
-The configuration for Spring Cloud Gateway is defined in `application.yml` file. You can customize routes, filters, load balancing settings, and other properties according to your requirements.
+### Example Configuration
 
-## License
+```yaml
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/users/**
+          filters:
+            - PrefixPath=/api/V1
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+server:
+  port: 8080
+```
+
+In this example:
+- Requests to `/users/**` are routed to `http://localhost:8081`
+- The prefix `/users` is stripped before forwarding
+- A **rate limiter** is applied (5 requests/sec with a burst capacity of 10)
+
+
+
+## 📜 License
+
+This project is licensed under the **MIT License** – see the [LICENSE](LICENSE) file for details.
